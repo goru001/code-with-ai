@@ -26,6 +26,7 @@ async def setup_learner():
     await download_file(config.model_file_url, path/'models'/f'{config.model_file_name}')
     await download_file(config.data_file_url, path /'data'/ f'{config.data_file_name}')
     await download_file(config.vocabulary_file_url, path /'data'/ f'{config.vocabulary_file_name}')
+    await download_file(config.id_to_col_url , path / 'data' / f'{config.id_to_col_file_name}')
     with open(path / 'data'/ f'{config.vocabulary_file_name}', 'rb') as f:
         vocabulary = pickle.load(f)
     global id_to_col
