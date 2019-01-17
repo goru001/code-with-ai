@@ -2,6 +2,16 @@
 <html lang="en">
 
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132693952-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-132693952-1');
+
+    </script>
     <title>Code with AI</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,7 +42,8 @@
             <h2>Which problem are you solving?</h2>
             <div id="wrap">
                 <form autocomplete="on" method="post">
-                    <textarea id="problem" rows="25" cols="40" placeholder="Paste here your problem statement.."></textarea>
+                    <textarea id="problem" rows="25" cols="40"
+                              placeholder="Paste here your problem statement.."></textarea>
                     <input id="problem_submit" value="problem_submit" type="button" onclick="analyze()">
                 </form>
             </div>
