@@ -56,9 +56,12 @@ async def analyze(request):
     data = await request.form()
     problem_statement = data['problem']
     print(problem_statement)
-    pred = learn.predict(problem_statement)
-    above_thresh = (pred[2].numpy() > 0.2)
-    result = [[id_to_col[i + 1], int(pred[2].numpy()[i]*100)] for i, x in enumerate(above_thresh) if x]
+    if len(problem_statement) > 0:
+        pred = learn.predict(problem_statement)
+        above_thresh = (pred[2].numpy() > 0.2)
+        result = [[id_to_col[i + 1], int(pred[2].numpy()[i]*100)] for i, x in enumerate(above_thresh) if x]
+    else:
+        result = []
     return JSONResponse({'result': result})
 
 if __name__ == '__main__':
