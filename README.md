@@ -8,7 +8,13 @@ Usage:
 1. Copy paste the problem statement
 2. Hit Enter :)
 
+
 ![Alt Text](code-with-ai/app/static/images/code-with-ai.gif)
+
+
+* This tool was very well received by competitive programming community. Check out my blog post on codeforces [here](https://codeforces.com/blog/entry/64604)
+
+* This tool was also shared by Jeremy Howard on Twitter. Check out his [tweet](https://twitter.com/jeremyphoward/status/1088432121595650048).
 
 ## Dataset
 
