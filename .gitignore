@@ -1,0 +1,14 @@
+ulmfit-model/competitive-programming-websites-scripts/spoj.ipynb
+ulmfit-model/competitive-programming-websites-scripts/topcoder.ipynb
+ulmfit-model/competitive-programming-websites-scripts/geckodriver.log
+ulmfit-model/competitive-programming-websites-scripts/ghostdriver.log
+ulmfit-model/data_clas/*
+ulmfit-model/models/*
+ulmfit-model/tmp/*
+ulmfit-model/code-with-ai-Copy1.ipynb
+ulmfit-model/config.py
+ulmfit-model/utils.py
+code-with-ai/app/data/competitive_cleaned.csv
+code-with-ai/app/data/id_to_col.pkl
+code-with-ai/app/data/vocabulary.pkl
+code-with-ai/app/models/competitive.pth

@@ -1,0 +1,463 @@
+text,mobius-function,queue,greedy,suffix-array,bitmasks,digit dp,lca,gcd,probabilities,combinatorics,graph matchings,easy-medium,precomputation,sprague-grundy,math,centroid-decomposition,link-cut-tree,expression parsing,constructive algorithms,medium,schedules,euler tour,easy,challenge,implementation,binary search,matrices,two pointers,dfs,dp+bitmask,sets,sqrt-decomposition,dijkstra,line-sweep,data structures,tree-dp,hard,mst,recursion,games,suffix-trees,kmp,stack,brute force,medium-hard,prefix-sum,graphs,2-sat,shortest paths,heavy-light,heaps,*special problem,trees,array,sliding-window,inclusion-exclusion,meet-in-the-middle,dfs and similar,sortings,pigeonhole,xor,gaussian-elimination,lucas theorem,divide and conquer,flows,strings,matrix-expo,number theory,bipartite,knapsack,sieve,ternary search,modulo,backtracking,treap,trie,dp,fenwick,observation,fibonacci,convex-hull,chinese remainder theorem,string suffix structures,geometry,lazy propagation,factorization,dsu,fft,segment-tree,hashing,bfs,prime,mo algorithm
+"F. Cookies
+time limit per test
+3 seconds
+memory limit per test
+512 megabytes
+input
+standard input
+output
+standard output
+Mitya and Vasya are playing an interesting game. They have a rooted tree with n vertices,and the vertices are indexed from 1 to n. The root has index 1. Every other vertex i ≥ 2 has its 
+parent
+ pi,and vertex i is called a 
+child
+ of vertex pi.
+There are some cookies in every vertex of the tree: there are xi cookies in vertex i. It takes exactly ti time for Mitya to eat 
+one
+ cookie in vertex i. There is also a chip,which is initially located in the root of the tree,and it takes li time to move the chip along the edge connecting vertex i with its parent.
+Mitya and Vasya take turns playing,Mitya goes first.
+ 
+ Mitya moves the chip from the vertex,where the chip is located,to one of its children. 
+ Vasya can remove an edge from the vertex,where the chip is located,to one of its children. Vasya can also decide to skip his turn. 
+ 
+ 
+Mitya can stop the game at any his turn. Once he stops the game,he moves the chip up to the root,eating some cookies along his way. Mitya can decide how many cookies he would like to eat in every vertex on his way. The total time spent on descend,ascend and eating cookies should not exceed T. Please note that in the end of the game the chip is always located in the root of the tree: Mitya can not leave the chip in any other vertex,even if he has already eaten enough cookies — he must move the chip back to the root (and every move from vertex v to its parent takes lv time).
+Find out what is the maximum number of cookies Mitya can eat,regardless of Vasya's actions.
+Input
+The first line contains two integers n and T — the number of vertices in the tree and the time he has to accomplish his task (2≤ n ≤ 10^5; 1≤ T≤10^18).
+The second line contains n integers x1,x2,...,xn — number of cookies located in the corresponding vertex (1≤ xi≤10^6). The third line contains n integers t1,t2,...,tn — how much time it takes Mitya to eat one cookie in vertex i (1≤ ti≤10^6).
+Each of the following n - 1 lines describe the tree. For every i from 2 to n,the corresponding line contains two integers pi and li,where pi denotes the parent of vertex i and li denotes the time it takes Mitya to move the chip along the edge from vertex i to its parent (1≤ pi < i,0≤ li ≤ 10^9).
+Output
+Output a single integer — maximum number of cookies Mitya can eat.
+Examples
+Input
+5 261 5 1 7 71 3 2 2 21 11 12 02 0
+Output
+11
+Input
+3 1792 2 16 6 61 32 3
+Output
+4
+Note
+In the first example test case,Mitya can start by moving the chip to vertex 2. In this case no matter how Vasya plays,Mitya is able to eat at least 11 cookies. Below you can find the detailed description of the moves:
+ 
+ Mitya moves chip to vertex 2. 
+ Vasya removes edge to vertex 4. 
+ Mitya moves chip to vertex 5. 
+ Since vertex 5 has no children,Vasya does not remove any edges. 
+ Mitya stops the game and moves the chip towards the root,eating cookies along the way (7 in vertex 5,3 in vertex 2,1 in vertex 1). 
+Mitya spend 1+0 time to go down,0+1 to go up,7⋅ 2 to eat 7 cookies in vertex 5,3⋅ 3 to eat 3 cookies in vertex 2,1⋅ 1 to eat 1 cookie in vertex 1. Total time is 1+0+0+1+7⋅ 2+3⋅ 3+1⋅ 1=26.",0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+"C. Postcard
+time limit per test
+1 second
+memory limit per test
+256 megabytes
+input
+standard input
+output
+standard output
+Andrey received a postcard from Irina. It contained only the words ""Hello,Andrey!"",and a strange string consisting of lowercase Latin letters,snowflakes and candy canes. Andrey thought that this string is an encrypted message,and decided to decrypt it.
+Andrey noticed that snowflakes and candy canes always stand after the letters,so he supposed that the message was encrypted as follows. Candy cane means that the letter before it can be removed,or can be left. A snowflake means that the letter before it can be removed,left,or repeated several times.
+For example,consider the following string: 
+ 
+ 
+This string can encode the message «
+happynewyear
+». For this,candy canes and snowflakes should be used as follows: 
+ 
+ candy cane 1: remove the letter 
+w
+,
+ snowflake 1: repeat the letter 
+p
+ twice,
+ candy cane 2: leave the letter 
+n
+,
+ snowflake 2: remove the letter 
+w
+,
+ snowflake 3: leave the letter 
+e
+. 
+ 
+ 
+Please note that the same string can encode different messages. For example,the string above can encode «
+hayewyar
+»,«
+happpppynewwwwwyear
+»,and other messages.
+Andrey knows that messages from Irina usually have a length of k letters. Help him to find out if a given string can encode a message of k letters,and if so,give an example of such a message.
+Input
+The first line contains the string received in the postcard. The string consists only of lowercase Latin letters,as well as the characters «
+*
+» and «
+?
+»,meaning snowflake and candy cone,respectively. These characters can only appear immediately after the letter. The length of the string does not exceed 200.
+The second line contains an integer number k (1 ≤ k ≤ 200),the required message length.
+Output
+Print any message of length k that the given string can encode,or «
+Impossible
+» if such a message does not exist.
+Examples
+Input
+hw?ap*yn?eww*ye*ar12
+Output
+happynewyear
+Input
+ab?a2
+Output
+aa
+Input
+ab?a3
+Output
+aba
+Input
+ababb5
+Output
+ababb
+Input
+ab?a1
+Output
+Impossible",0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+"B. Squares and Segments
+time limit per test
+1 second
+memory limit per test
+256 megabytes
+input
+standard input
+output
+standard output
+Little Sofia is in fourth grade. Today in the geometry lesson she learned about segments and squares. On the way home,she decided to draw n squares in the snow with a side length of 1. For simplicity,we assume that Sofia lives on a plane and can draw only segments of length 1,parallel to the coordinate axes,with vertices at integer points.
+In order to draw a segment,Sofia proceeds as follows. If she wants to draw a vertical segment with the coordinates of the ends (x,y) and (x,y+1). Then Sofia looks if there is already a drawn segment with the coordinates of the ends (x',y) and (x',y+1) for some x'. If such a segment exists,then Sofia quickly draws a new segment,using the old one as a guideline. If there is no such segment,then Sofia has to take a ruler and measure a new segment for a long time. Same thing happens when Sofia wants to draw a horizontal segment,but only now she checks for the existence of a segment with the same coordinates x,x+1 and the differing coordinate y.
+For example,if Sofia needs to draw one square,she will have to draw two segments using a ruler: 
+ 
+ 
+After that,she can draw the remaining two segments,using the first two as a guide: 
+ 
+ 
+If Sofia needs to draw two squares,she will have to draw three segments using a ruler: 
+ 
+ 
+After that,she can draw the remaining four segments,using the first three as a guide: 
+ 
+ 
+Sofia is in a hurry,so she wants to minimize the number of segments that she will have to draw with a ruler without a guide. Help her find this minimum number.
+Input
+The only line of input contains a single integer n (1 ≤ n ≤ 10^9),the number of squares that Sofia wants to draw.
+Output
+Print single integer,the minimum number of segments that Sofia will have to draw with a ruler without a guide in order to draw n squares in the manner described above.
+Examples
+Input
+1
+Output
+2
+Input
+2
+Output
+3
+Input
+4
+Output
+4",0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+"A. Snowball
+time limit per test
+1 second
+memory limit per test
+256 megabytes
+input
+standard input
+output
+standard output
+Today's morning was exceptionally snowy. Meshanya decided to go outside and noticed a huge snowball rolling down the mountain! Luckily,there are two stones on that mountain.
+Initially,snowball is at height h and it has weight w. Each second the following sequence of events happens: snowball's weights increases by i,where i — is the current height of snowball,then snowball hits the stone (if it's present at the current height),then snowball moves one meter down. If the snowball reaches height zero,it stops.
+There are exactly two stones on the mountain. First stone has weight u1 and is located at height d1,the second one — u2 and d2 respectively. When the snowball hits either of two stones,it loses weight equal to the weight of that stone. If after this snowball has negative weight,then its weight becomes zero,but the snowball continues moving as before.
+ 
+ 
+Find the weight of the snowball when it stops moving,that is,it reaches height 0.
+Input
+First line contains two integers w and h — initial weight and height of the snowball (0 ≤ w ≤ 100; 1 ≤ h ≤ 100).
+Second line contains two integers u1 and d1 — weight and height of the first stone (0 ≤ u1 ≤ 100; 1 ≤ d1 ≤ h).
+Third line contains two integers u2 and d2 — weight and heigth of the second stone (0 ≤ u2 ≤ 100; 1 ≤ d2 ≤ h; d1 ≠ d2). Notice that stones always have different heights.
+Output
+Output a single integer — final weight of the snowball after it reaches height 0.
+Examples
+Input
+4 31 11 2
+Output
+8
+Input
+4 39 20 1
+Output
+1
+Note
+In the first example,initially a snowball of weight 4 is located at a height of 3,there are two stones of weight 1,at a height of 1 and 2,respectively. The following events occur sequentially: 
+ 
+ The weight of the snowball increases by 3 (current height),becomes equal to 7. 
+ The snowball moves one meter down,the current height becomes equal to 2. 
+ The weight of the snowball increases by 2 (current height),becomes equal to 9. 
+ The snowball hits the stone,its weight decreases by 1 (the weight of the stone),becomes equal to 8. 
+ The snowball moves one meter down,the current height becomes equal to 1. 
+ The weight of the snowball increases by 1 (current height),becomes equal to 9. 
+ The snowball hits the stone,its weight decreases by 1 (the weight of the stone),becomes equal to 8. 
+ The snowball moves one meter down,the current height becomes equal to 0. 
+Thus,at the end the weight of the snowball is equal to 8.",0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+"F. Ж-function
+time limit per test
+6 seconds
+memory limit per test
+512 megabytes
+input
+standard input
+output
+standard output
+The length of the longest common prefix of two strings s=s1 s2 … sn and t = t1 t2 … tm is defined as the maximum k ≤ \min(n,m) such that s1 s2 … sk equals t1 t2 … tk. Let's denote the longest common prefix of two strings s and t as lcp(s,t).
+Z-function of a string s1 s2 ⋯ sn is a sequence of integers z1,z2,…,zn,where zi = lcp(s1 s2 … sn,\ \ si si+1 ⋯ sn). 
+Ж-function
+ of a string s is defined as z1 + z2 + … + zn.
+You're given a string s=s1 s2 … sn and q queries. Each query is described by two integers li and ri,where 1 ≤ li ≤ ri ≤ n. The answer for the query is defined as Ж-function of the string sli sli +1 … sri.
+Input
+The first line contains the string s,consisting of lowercase English letters (1 ≤ |s| ≤ 200\,000). The second line contains one integer q — the number of queries (1 ≤ q ≤ 200\,000). Each of the following q lines contains two integers li and ri,describing the query (1 ≤ li ≤ ri ≤ |s|).
+Output
+For every query output one integer: the value of Ж-function of the corresponding substring.
+Examples
+Input
+abbd42 31 33 31 4
+Output
+3314
+Input
+bbaaa52 41 51 53 31 2
+Output
+36613
+Note
+In the first sample case there are four queries:
+ 
+ the first query corresponds to the substring 
+bb
+,and its Ж-function equals 2 + 1 = 3;
+ the second query corresponds to the substring 
+abb
+,and its Ж-function equals 3 + 0 + 0 = 3;
+ the third query corresponds to the substring 
+b
+,and its Ж-function equals 1.
+ the fourth query corresponds to the substring 
+abdd
+,and its Ж-function equals 4 + 0 + 0 + 0= 4. ",0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+"E. Fedya the Potter
+time limit per test
+2.5 seconds
+memory limit per test
+256 megabytes
+input
+standard input
+output
+standard output
+Fedya loves problems involving data structures. Especially ones about different queries on subsegments. Fedya had a nice array a1,a2,… an and a beautiful data structure. This data structure,given l and r,1 ≤ l ≤ r ≤ n,could find the greatest integer d,such that d divides each of al,al+1,...,ar. 
+Fedya really likes this data structure,so he applied it to every non-empty contiguous subarray of array a,put all answers into the array and sorted it. He called this array b. It's easy to see that array b contains n(n+1)/2 elements.
+After that,Fedya implemented another cool data structure,that allowed him to find sum bl + bl+1 + … + br for given l and r,1 ≤ l ≤ r ≤ n(n+1)/2. Surely,Fedya applied this data structure to every contiguous subarray of array b,called the result c and sorted it. Help Fedya find the lower median of array c.
+Recall that for a sorted array of length k the 
+lower median
+ is an element at position \lfloor k + 12 \rfloor,if elements of the array are enumerated starting from 1. For example,the lower median of array (1,1,2,3,6) is 2,and the lower median of (0,17,23,96) is 17.
+Input
+First line contains a single integer n — number of elements in array a (1 ≤ n ≤ 50\,000). 
+Second line contains n integers a1,a2,…,an — elements of the array (1 ≤ ai ≤ 100\,000).
+Output
+Print a single integer — the lower median of array c.
+Examples
+Input
+26 3
+Output
+6
+Input
+28 8
+Output
+8
+Input
+519 16 2 12 15
+Output
+12
+Note
+In the first sample array b is equal to 3,3,6,then array c is equal to 3,3,6,6,9,12,so the lower median is 6.
+In the second sample b is 8,8,8,c is 8,8,8,16,16,24,so the lower median is 8.",0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+"D. Eels
+time limit per test
+3 seconds
+memory limit per test
+256 megabytes
+input
+standard input
+output
+standard output
+Vasya is a big fish lover,and his parents gave him an aquarium for the New Year. Vasya does not have a degree in ichthyology,so he thinks that filling a new aquarium with eels is a good idea. Unfortunately,eels are predators,so Vasya decided to find out how dangerous this idea was.
+Getting into one aquarium,eels fight each other until exactly one fish remains. When two eels fight,the big one eats the smaller one (if their weights are equal,then one of them will still eat the other). Namely,let n eels be initially in an aquarium,and the i-th of them have a weight of xi. Then n-1 battles will occur between them,as a result of which,only one eel will survive. In a battle of two eels with weights a and b,where a ≤ b,eel of weight a will be eaten and disappear from the aquarium,and eel of weight b will increase its weight to a+b.
+A battle between two eels with weights a and b,where a ≤ b,is considered 
+dangerous
+ if b ≤ 2 a. For a given set of eels,
+danger
+ is defined as the maximum number of dangerous battles that can occur among these eels if they are placed in one aquarium.
+Now Vasya is planning,which eels he wants to put into an aquarium. He has some set of eels (initially empty). He makes a series of operations with this set. With each operation,he either adds one eel in the set,or removes one eel from the set. Vasya asks you to calculate the danger of the current set of eels after each operation.
+Input
+The first line of input contains a single integer q (1 ≤ q ≤ 500\,000),the number of operations that Vasya makes. The next q lines describe operations. Each operation has one of two types :
+ 
+ 
++ x
+ describes the addition of one eel of weight x to the set (1 ≤ x ≤ 10^9). Note that in the set there can be several eels of the same weight. 
+ 
+- x
+ describes the removal of one eel of weight x from a set,and it is guaranteed that there is a eel of such weight in the set. 
+Output
+For each operation,output single integer,the danger of the set of eels after this operation.
+Examples
+Input
+2+ 1- 1
+Output
+00
+Input
+4+ 1+ 3+ 7- 3
+Output
+0010
+Input
+9+ 2+ 2+ 12- 2- 2+ 4+ 1+ 1- 12
+Output
+011000032
+Note
+In the third example,after performing all the operations,the set of eels looks like \1,1,4\. For this set of eels,there are several possible scenarios,if all of them are placed in one aquarium:
+ 
+ The eel of weight 4 eats the eel of weight 1,and then the second eel of weight 1. In this case,none of the battles are dangerous. 
+ The eel of weight 1 eats the eel of weight 1,and this battle is dangerous. Now there are two eels in the aquarium,their weights are 4 and 2. The big one eats the small one,and this battle is also dangerous. In this case,the total number of dangerous battles will be 2. 
+Thus,the danger of this set of eels is 2.",0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+"C. Construct a tree
+time limit per test
+1 second
+memory limit per test
+256 megabytes
+input
+standard input
+output
+standard output
+Misha walked through the snowy forest and he was so fascinated by the trees to decide to draw his own tree!
+Misha would like to construct a rooted tree with n vertices,indexed from 1 to n,where the root has index 1. Every other vertex has a 
+parent
+ pi,and i is called a 
+child
+ of vertex pi. Vertex u belongs to the 
+subtree
+ of vertex v iff v is reachable from u while iterating over the parents (u,pu,ppu,...). Clearly,v belongs to its own subtree,and the number of vertices in the subtree is called the 
+size
+ of the subtree. Misha is only interested in trees where every vertex belongs to the subtree of vertex 1.
+Below there is a tree with 6 vertices. The subtree of vertex 2 contains vertices 2,3,4,5. Hence the size of its subtree is 4. 
+ 
+ 
+The 
+branching coefficient
+ of the tree is defined as the maximum number of children in any vertex. For example,for the tree above the branching coefficient equals 2. Your task is to construct a tree with n vertices such that the sum of the subtree sizes for all vertices equals s,and the branching coefficient is minimum possible.
+Input
+The only input line contains two integers n and s — the number of vertices in the tree and the desired sum of the subtree sizes (2 ≤ n ≤ 10^5; 1 ≤ s ≤ 10^10).
+Output
+If the required tree does not exist,output «
+No
+». Otherwise output «
+Yes
+» on the first line,and in the next one output integers p2,p3,...,pn,where pi denotes the parent of vertex i.
+Examples
+Input
+3 5
+Output
+Yes1 1 
+Input
+4 42
+Output
+No
+Input
+6 15
+Output
+Yes1 2 3 1 5 
+Note
+Below one can find one of the possible solutions for the first sample case. The sum of subtree sizes equals 3 + 1 + 1 = 5,and the branching coefficient equals 2.
+ 
+ 
+Below one can find one of the possible solutions for the third sample case. The sum of subtree sizes equals 6 + 3 + 2 + 1 + 2 + 1 = 15,and the branching coefficient equals 2.
+ 
+ ",0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+"B. Nice table
+time limit per test
+1 second
+memory limit per test
+256 megabytes
+input
+standard input
+output
+standard output
+You are given an n × m table,consisting of characters «
+A
+»,«
+G
+»,«
+C
+»,«
+T
+». Let's call a table 
+nice
+,if every 2 × 2 square contains all four distinct characters. Your task is to find a nice table (also consisting of «
+A
+»,«
+G
+»,«
+C
+»,«
+T
+»),that differs from the given table in the minimum number of characters.
+Input
+First line contains two positive integers n and m — number of rows and columns in the table you are given (2 ≤ n,m,n × m ≤ 300\,000). Then,n lines describing the table follow. Each line contains exactly m characters «
+A
+»,«
+G
+»,«
+C
+»,«
+T
+».
+Output
+Output n lines,m characters each. This table must be nice and differ from the input table in the minimum number of characters.
+Examples
+Input
+2 2AGCT
+Output
+AGCT
+Input
+3 5AGCAGAGCAGAGCAG
+Output
+TGCATCATGCTGCAT
+Note
+In the first sample,the table is already nice. In the second sample,you can change 9 elements to make the table nice.",0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+"A. Sum in the tree
+time limit per test
+2 seconds
+memory limit per test
+256 megabytes
+input
+standard input
+output
+standard output
+Mitya has a rooted tree with n vertices indexed from 1 to n,where the root has index 1. Each vertex v initially had an integer number av ≥ 0 written on it. For every vertex v Mitya has computed sv: the sum of all values written on the vertices on the path from vertex v to the root,as well as hv — the depth of vertex v,which denotes the number of vertices on the path from vertex v to the root. Clearly,s1=a1 and h1=1.
+Then Mitya erased all numbers av,and by accident he also erased all values sv for vertices with even depth (vertices with even hv). Your task is to restore the values av for every vertex,or determine that Mitya made a mistake. In case there are multiple ways to restore the values,you're required to find one which minimizes the total sum of values av for all vertices in the tree.
+Input
+The first line contains one integer n — the number of vertices in the tree (2 ≤ n ≤ 10^5). The following line contains integers p2,p3,... pn,where pi stands for the parent of vertex with index i in the tree (1 ≤ pi < i). The last line contains integer values s1,s2,...,sn (-1 ≤ sv ≤ 10^9),where erased values are replaced by -1.
+Output
+Output one integer — the minimum total sum of all values av in the original tree,or -1 if such tree does not exist.
+Examples
+Input
+51 1 1 11 -1 -1 -1 -1
+Output
+1
+Input
+51 2 3 11 -1 2 -1 -1
+Output
+2
+Input
+31 22 -1 1
+Output
+-1",0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,1.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
