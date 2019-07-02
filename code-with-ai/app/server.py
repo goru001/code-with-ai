@@ -35,7 +35,7 @@ async def setup_learner():
     label_cols = list(range(1, 94))
     data_clas = TextClasDataBunch.from_csv(path=path, csv_name='data/competitive_cleaned.csv', vocab=vocabulary,
                                            text_cols=[0], label_cols=label_cols)
-    learn = text_classifier_learner(data_clas, AWD_LSTM, drop_mult=0.5)
+    learn = text_classifier_learner(data_clas, drop_mult=0.5)
     learn.load('competitive')
     return learn
 
