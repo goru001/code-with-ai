@@ -10,6 +10,8 @@ from fastai.text import *
 
 path = Path(__file__).parent
 id_to_col = []
+setup_done = False
+learn = None
 
 app = Starlette()
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'])
@@ -23,6 +25,7 @@ async def download_file(url, dest):
             with open(dest, 'wb') as f: f.write(data)
 
 async def setup_learner():
+    global learn
     await download_file(config.model_file_url, path/'models'/f'{config.model_file_name}')
     await download_file(config.data_file_url, path /'data'/ f'{config.data_file_name}')
     await download_file(config.vocabulary_file_url, path /'data'/ f'{config.vocabulary_file_name}')
@@ -39,11 +42,13 @@ async def setup_learner():
     learn.load('competitive')
     return learn
 
-
-loop = asyncio.get_event_loop()
-tasks = [asyncio.ensure_future(setup_learner())]
-learn = loop.run_until_complete(asyncio.gather(*tasks))[0]
-loop.close()
+def setup():
+    global learn, setup_done
+    loop = asyncio.get_event_loop()
+    tasks = [asyncio.ensure_future(setup_learner())]
+    learn = loop.run_until_complete(asyncio.gather(*tasks))[0]
+    loop.close()
+    setup_done = True
 
 
 @app.route('/')
@@ -53,6 +58,8 @@ def index(request):
 
 @app.route('/analyze', methods=['POST'])
 async def analyze(request):
+    if not setup_done:
+        setup()
     data = await request.form()
     problem_statement = data['problem']
     print(problem_statement)
