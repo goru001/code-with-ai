@@ -42,7 +42,7 @@ async def setup_learner():
     learn.load('competitive')
     return learn
 
-def setup():
+async def setup():
     global learn, setup_done
     loop = asyncio.get_event_loop()
     tasks = [asyncio.ensure_future(setup_learner())]
@@ -59,7 +59,7 @@ def index(request):
 @app.route('/analyze', methods=['POST'])
 async def analyze(request):
     if not setup_done:
-        setup()
+        await setup()
     data = await request.form()
     problem_statement = data['problem']
     print(problem_statement)
