@@ -42,13 +42,13 @@ async def setup_learner():
     learn.load('competitive')
     return learn
 
-async def setup():
-    global learn, setup_done
-    loop = asyncio.get_event_loop()
-    tasks = [asyncio.ensure_future(setup_learner())]
-    learn = loop.run_until_complete(asyncio.gather(*tasks))[0]
-    loop.close()
-    setup_done = True
+# async def setup():
+#     global learn, setup_done
+#     loop = asyncio.get_event_loop()
+#     tasks = [asyncio.ensure_future(setup_learner())]
+#     learn = loop.run_until_complete(asyncio.gather(*tasks))[0]
+#     loop.close()
+#     setup_done = True
 
 
 @app.route('/')
@@ -58,8 +58,10 @@ def index(request):
 
 @app.route('/analyze', methods=['POST'])
 async def analyze(request):
+    global setup_done, learn
     if not setup_done:
-        await setup()
+        learn = await setup_learner()
+        setup_done = True
     data = await request.form()
     problem_statement = data['problem']
     print(problem_statement)
