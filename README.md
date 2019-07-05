@@ -1,5 +1,5 @@
 # Code with AI
-Interface for people to use my model which predicts which techniques one should use to solve a competitive programming problem to get an AC
+Code with AI is a tool which predicts which techniques one should use to solve a competitive programming problem to get an AC
 
 Tool: https://code-with-ai.app.render.com/
 
@@ -15,6 +15,8 @@ Usage:
 * This tool was very well received by competitive programming community. Check out my blog post on codeforces [here](https://codeforces.com/blog/entry/64604)
 
 * This tool was also shared by Jeremy Howard on Twitter. Check out his [tweet](https://twitter.com/jeremyphoward/status/1088432121595650048).
+
+* Some Analytics: [3300+ unique users](https://drive.google.com/open?id=1IqlUlQmGPAk4iNc7Yv6T8wx9LNTcCyhd) have used this tool, till June 2019 since its launch.
 
 ## Dataset
 
